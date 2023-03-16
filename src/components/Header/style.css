@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Stick+No+Bills:wght@800&display=swap');
+
 .header {
     text-align: center;
     background: #defcf9; 
     padding: 30px;
     line-height: 3.5;
-    margin: 0 0 20px 0;
-    letter-spacing: 7px;
+    margin: 0 0 40px 0;
+    letter-spacing: 20px;
+}
+
+.header h1 {
+    font-family: 'Stick No Bills', sans-serif;
+    color: white;
+    text-shadow: 3px 2px 10px rgba(0,0,0,1);
 }
 
 /* .second-color { 
