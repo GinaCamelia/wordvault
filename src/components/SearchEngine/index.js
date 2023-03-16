@@ -17,8 +17,16 @@ export default function SearchEngine() {
       <form onSubmit={search}>
         <input 
         type="search" 
+        placeholder="Searching for ..."
+        className='formControl SearchInput'
         value={keyword} 
-        onChange={handleChange} />
+        onChange={handleChange} 
+        />
+        <input 
+        type='submit'
+        value='Search'
+        className='btn btn-primary SearchButton'
+        />
       </form>
     </div>
   );
