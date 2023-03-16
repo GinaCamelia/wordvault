@@ -64,7 +64,7 @@ export default function SearchEngine() {
         />
       </form>
       <div className="response">
-        <h4>Rhyming words for <span className="keyword">{searchHistory[searchHistory.length -1]}</span>:</h4>
+        <h4>Words that rhyme with <span className="keyword">{searchHistory[searchHistory.length -1]}</span>:</h4>
         {showResults && (
           <ul>
             {uniqueWords.map((word) => (
