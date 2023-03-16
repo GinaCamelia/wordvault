@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 export default function SearchEngine() {
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [uniqueWords, setUniqueWords] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
@@ -14,6 +15,7 @@ export default function SearchEngine() {
     event.preventDefault();
     setKeyword("");
     setShowResults(true);
+    setSearchHistory([...searchHistory, keyword]);
     setUniqueWords(
       relatedWords
       .filter((word) => word.word.length > 2)
@@ -51,8 +53,8 @@ export default function SearchEngine() {
           type="search"
           placeholder="Searching for ..."
           className="formControl SearchInput"
-          value={keyword}
           onChange={handleChange}
+          value={keyword}
         />
         <input
           type="submit"
@@ -61,7 +63,7 @@ export default function SearchEngine() {
         />
       </form>
       <div className="respose">
-        <h4>Rhyming words for <span className="keyword">...</span></h4>
+        <h4>Rhyming words for <span className="keyword">{searchHistory[searchHistory.length -1]}</span>:</h4>
         {uniqueWords.length > 0 && (
           <ul>
             {uniqueWords.map((word) => (
