@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './style.css';
 
 export default function SearchEngine() {
   const [keyword, setKeyword] = useState('');
@@ -47,12 +48,12 @@ export default function SearchEngine() {
   }, [showResults, keyword]);
 
   return (
-    <div className="Search">
-      <form onSubmit={search}>
+    <div className="SearchContainer">
+      <form onSubmit={search} className='SearchForm'>
         <input
           type="search"
           placeholder="Searching for ..."
-          className="formControl SearchInput"
+          className="form-control SearchInput"
           onChange={handleChange}
           value={keyword}
         />
@@ -62,9 +63,9 @@ export default function SearchEngine() {
           className="btn btn-primary SearchButton"
         />
       </form>
-      <div className="respose">
+      <div className="response">
         <h4>Rhyming words for <span className="keyword">{searchHistory[searchHistory.length -1]}</span>:</h4>
-        {uniqueWords.length > 0 && (
+        {showResults && (
           <ul>
             {uniqueWords.map((word) => (
               <li key={word}>{word}</li>
