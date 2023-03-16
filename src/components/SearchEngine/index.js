@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function SearchEngine() {
   const [keyword, setKeyword] = useState();
+  const [relatedWords, setRelatedWords] = useState([]);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
@@ -10,24 +11,50 @@ export default function SearchEngine() {
   const search = (event) => {
     event.preventDefault();
     setKeyword("");
+    // console.log(keyword);
   };
+
+  useEffect(() => {
+    async function fetchRelatedwords() {
+      const response = await fetch(
+        `https://api.datamuse.com/words?rel_rhy=${keyword}`
+      );
+      console.log(response);
+      const data = await response.json();
+      setRelatedWords(data);
+    }
+    if (keyword) {
+      fetchRelatedwords();
+    }
+  }, [keyword]);
 
   return (
     <div className="Search">
       <form onSubmit={search}>
-        <input 
-        type="search" 
-        placeholder="Searching for ..."
-        className='formControl SearchInput'
-        value={keyword} 
-        onChange={handleChange} 
+        <input
+          type="search"
+          placeholder="Searching for ..."
+          className="formControl SearchInput"
+          value={keyword}
+          onChange={handleChange}
         />
-        <input 
-        type='submit'
-        value='Search'
-        className='btn btn-primary SearchButton'
+        <input
+          type="submit"
+          value="Search"
+          className="btn btn-primary SearchButton"
         />
       </form>
+      <div className="respose">
+        <h4>
+          Rhyming words for <span className="keyword">...</span>
+        </h4>
+        <ul>
+          {Array.isArray(relatedWords) &&
+            relatedWords.map((word, index) => (
+              <li key={index}>{word.word}</li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }
