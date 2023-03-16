@@ -1,3 +1,19 @@
 .header {
     text-align: center;
+    background: #defcf9; 
+    padding: 30px;
+    line-height: 3.5;
+    margin: 0 0 20px 0;
+    letter-spacing: 7px;
 }
+
+/* .second-color { 
+	background: #cadefc; 
+}
+
+.third-color { 
+	background: #c3bef0; 
+}
+
+.fourth-color { 
+	background: #cca8e9;  */
