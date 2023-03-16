@@ -4,6 +4,7 @@ export default function SearchEngine() {
   const [keyword, setKeyword] = useState();
   const [relatedWords, setRelatedWords] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [uniqueWords, setUniqueWords] = useState([]);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
@@ -11,8 +12,22 @@ export default function SearchEngine() {
 
   const search = (event) => {
     event.preventDefault();
-    setShowResults(true);
     setKeyword("");
+    setShowResults(true);
+    setUniqueWords(
+      relatedWords
+      .filter((word) => word.word.length > 2)
+      .sort(() => Math.random() -0.5)
+      .reduce((uniqueWords, word) => {
+        if(uniqueWords.length >= 10) {
+          return uniqueWords;
+        }
+        if(!uniqueWords.includes(word.word)) {
+          uniqueWords.push(word.word);
+        }
+        return uniqueWords;
+      }, [])
+    );
   };
 
   useEffect(() => {
@@ -24,10 +39,10 @@ export default function SearchEngine() {
       const data = await response.json();
       setRelatedWords(data);
     }
-    if (keyword) {
+    if (showResults && keyword) {
       fetchRelatedwords();
     }
-  }, [keyword]);
+  }, [showResults, keyword]);
 
   return (
     <div className="Search">
@@ -46,13 +61,11 @@ export default function SearchEngine() {
         />
       </form>
       <div className="respose">
-        <h4>
-          Rhyming words for <span className="keyword">...</span>
-        </h4>
-        {showResults && (
+        <h4>Rhyming words for <span className="keyword">...</span></h4>
+        {uniqueWords.length > 0 && (
           <ul>
-            {relatedWords.map((word, index) => (
-              <li key={index}>{word.word}</li>
+            {uniqueWords.map((word) => (
+              <li key={word}>{word}</li>
             ))}
           </ul>
         )}
