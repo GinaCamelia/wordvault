@@ -4,7 +4,7 @@ import './style.css';
 export default function Header(){
     return(
         <div className='header'>
-            <h1>Hello</h1>
+            <h1>WordVault</h1>
         </div>
     )
 }
