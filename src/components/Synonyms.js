@@ -12,33 +12,33 @@ export default function Synonyms({
   const [synonyms, setSynonyms] = useState([]);
 
   useEffect(() => {
-      async function fetchSynonyms() {
-        const response = await fetch(
-          `https://api.datamuse.com/words?rel_syn=${keyword}`
-        );
-        const data = await response.json();
-        const similarWord = setKeyword("");
-        console.log(`I want to see the following word: ${similarWord}`);
-        const similarWords = data.similarWords || data;
-        console.log(similarWords);
-        const uniqueWords = similarWords
-          .filter((word) => word.word.length > 2)
-          .sort(() => Math.random() - 0.5)
-          .reduce((uniqueWords, word) => {
-            if (uniqueWords.length >= 10) {
-              return uniqueWords;
-            }
-            if (!uniqueWords.includes(word.word)) {
-              uniqueWords.push(word.word);
-            }
+    async function fetchSynonyms() {
+      const response = await fetch(
+        `https://api.datamuse.com/words?rel_syn=${keyword}`
+      );
+      const data = await response.json();
+      const similarWord = setKeyword("");
+      console.log(`I want to see the following word: ${similarWord}`);
+      const similarWords = data.similarWords || data;
+      console.log(similarWords);
+      const uniqueWords = similarWords
+        .filter((word) => word.word.length > 2)
+        .sort(() => Math.random() - 0.5)
+        .reduce((uniqueWords, word) => {
+          if (uniqueWords.length >= 10) {
             return uniqueWords;
-          }, []);
-        setSynonyms(uniqueWords);
-        setSearchHistory([...searchHistory, keyword]);
-        setShowResults(true);
-      }
-      if (showResults && keyword) {
-      fetchSynonyms(); 
+          }
+          if (!uniqueWords.includes(word.word)) {
+            uniqueWords.push(word.word);
+          }
+          return uniqueWords;
+        }, []);
+      setSynonyms(uniqueWords);
+      setSearchHistory([...searchHistory, keyword]);
+      setShowResults(true);
+    }
+    if (showResults && keyword) {
+      fetchSynonyms();
     }
   }, [
     keyword,
@@ -50,7 +50,7 @@ export default function Synonyms({
   ]);
 
   //why is the return statement not rendering the synonyms?
-  
+
   return (
     <div className="SearchContainer">
       <div className="response">
