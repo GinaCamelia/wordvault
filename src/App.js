@@ -1,12 +1,15 @@
 import React from 'react';
-import Header from './components/Header/index.js';
-import SearchEngine from './components/SearchEngine/index.js';
+import SearchForm from './components/SearchForm.js';
+import Synonyms from './components/Synonyms.js';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <SearchEngine />
+    <div className='container'>
+      <div className='Header'>
+        <h1>WORDVAULT</h1>
+      </div>
+      <SearchForm />
+      <Synonyms />
     </div>
   );
 }
