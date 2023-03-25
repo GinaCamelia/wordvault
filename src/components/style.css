@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Stick+No+Bills:wght@800&display=swap');
+
+.Header {
+    text-align: center;
+    background: #defcf9; 
+    padding: 30px;
+    margin: 0 0 40px 0;
+    letter-spacing: 20px;
+    width: 100%!important;
+}
+
+.Header h1 {
+    font-family: 'Stick No Bills', sans-serif;
+    color: white;
+    text-shadow: 3px 2px 10px rgba(0,0,0,1);
+}
+
+/* .second-color { 
+	background: #cadefc; 
+}
+
+.third-color { 
+	background: #c3bef0; 
+}
+
+.fourth-color { 
+	background: #cca8e9;  */
+
+.SearchInput {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.SearchForm {
+    display: flex;
+    justify-content: center;
+}
+
+.SearchButton {
+    margin-left: 5px;
+    background-color: #defcf9!important;
+    border-color: lightgrey!important;
+    color: black!important;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.SearchButton:hover {
+    background-color: #cadefc!important; 
+    transition: all 200ms ease-in-out;
+}
+
+.SearchContainer .response{
+    margin: 40px 40px;
+    border-radius: 10px;
+    text-align: left;
+    background: #F0E2E8;
+}
+
+.SearchContainer .response h4 {
+    margin-left: 40px;
+    padding: 20px 0;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.SearchContainer ul {
+    display: inline-block;
+    list-style: none;
+    text-align: left;
+}
+
+.response .keyword {
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+.form-control {
+    width: 50%!important;
+} 
