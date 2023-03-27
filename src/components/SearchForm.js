@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 
 export default function SearchForm() {
   const [keyword, setKeyword] = useState("");
-  const [relatedWords, setRelatedWords] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const [uniqueWords, setUniqueWords] = useState([]);
-  const [searchHistory, setSearchHistory] = useState([]);
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
@@ -16,37 +13,7 @@ export default function SearchForm() {
     event.preventDefault();
     setKeyword("");
     setShowResults(true);
-    setSearchHistory([...searchHistory, keyword]);
-    setUniqueWords(
-      relatedWords
-        .filter((word) => word.word.length > 2)
-        .sort(() => Math.random() - 0.5)
-        .reduce((uniqueWords, word) => {
-          if (uniqueWords.length >= 10) {
-            return uniqueWords;
-          }
-          if (!uniqueWords.includes(word.word)) {
-            uniqueWords.push(word.word);
-          }
-          return uniqueWords;
-        }, [])
-    );
-  };
-
-  useEffect(() => {
-    async function fetchRelatedwords() {
-      const response = await fetch(
-        `https://api.datamuse.com/words?rel_rhy=${keyword}`
-      );
-      console.log(response);
-      const data = await response.json();
-      setRelatedWords(data);
-    }
-    if (showResults && keyword) {
-      fetchRelatedwords();
-    }
-  }, [showResults, keyword]);
-
+  }
   return (
     <div className="SearchContainer">
       <form onSubmit={search} className="SearchForm">
@@ -63,21 +30,15 @@ export default function SearchForm() {
           className="btn btn-primary SearchButton"
         />
       </form>
+
       <div className="response">
-        <h4>
-          Words that rhyme with{" "}
-          <span className="keyword">
-            {searchHistory[searchHistory.length - 1]}
-          </span>
-          :
-        </h4>
-        {showResults && (
-          <ul>
-            {uniqueWords.map((word) => (
-              <li key={word}>{word}</li>
-            ))}
-          </ul>
-        )}
+        <>
+          <h4>Words that rhyme with </h4>
+          {showResults && <></>}
+
+          <h4>Synonyms for </h4>
+          {showResults && <></>}
+        </>
       </div>
     </div>
   );
