@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
+import Synonyms from "./Synonyms";
+import RhymingWords from "./RhymingWords";
 
 export default function SearchForm() {
   const [keyword, setKeyword] = useState("");
@@ -34,10 +36,18 @@ export default function SearchForm() {
       <div className="response">
         <>
           <h4>Words that rhyme with </h4>
-          {showResults && <></>}
+          {showResults && (
+          <>
+            <RhymingWords value={keyword} setKeyword={setKeyword} key={'rhy'} />
+          </>
+          )}
 
           <h4>Synonyms for </h4>
-          {showResults && <></>}
+          {showResults && (
+          <>
+            <Synonyms value={keyword} setKeyword={setKeyword} key={'syn'} />
+          </>
+          )}
         </>
       </div>
     </div>
