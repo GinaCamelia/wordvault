@@ -1,73 +1,57 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 
-export default function Synonyms({
-  keyword,
-  setKeyword,
-  searchHistory = [],
-  setSearchHistory,
-  showResults,
-  setShowResults,
-}) {
+// added synonym feature to component using Datamuse API
+export default function Synonyms(props) {
   const [synonyms, setSynonyms] = useState([]);
 
+// declared an effect to be run when the props.value changes
   useEffect(() => {
+    console.log(props);
+// declared an asyncronous function to to fetch synonyms from api
     async function fetchSynonyms() {
-      const response = await fetch(
-        `https://api.datamuse.com/words?rel_syn=${keyword}`
-      );
-      const data = await response.json();
-      const similarWord = setKeyword("");
-      console.log(`I want to see the following word: ${similarWord}`);
-      const similarWords = data.similarWords || data;
-      console.log(similarWords);
-      const uniqueWords = similarWords
-        .filter((word) => word.word.length > 2)
-        .sort(() => Math.random() - 0.5)
-        .reduce((uniqueWords, word) => {
-          if (uniqueWords.length >= 10) {
-            return uniqueWords;
-          }
-          if (!uniqueWords.includes(word.word)) {
-            uniqueWords.push(word.word);
-          }
-          return uniqueWords;
-        }, []);
-      setSynonyms(uniqueWords);
-      setSearchHistory([...searchHistory, keyword]);
-      setShowResults(true);
+      try {
+        const response = await fetch(
+          `https://api.datamuse.com/words?rel_syn=${props.value}`
+        );
+        console.log("Response: ", response);
+        //converted the response body to JSON
+        const data = await response.json();
+        console.log(data);
+        //filter, sort and reduce the data to a list of up to 10 unique words
+        setSynonyms(
+          data
+          .filter((word) => word.word.length > 2)
+          .sort(() => Math.random() - 0.5)
+          .reduce((synonyms, word) => {
+            if (synonyms.length >= 10) {
+              return synonyms;
+            }
+            if (!synonyms.includes(word.word)) {
+              synonyms.push(word.word);
+            }
+            return synonyms;
+          }, [])
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
-    if (showResults && keyword) {
-      fetchSynonyms();
-    }
-  }, [
-    keyword,
-    setKeyword,
-    searchHistory,
-    setSearchHistory,
-    showResults,
-    setShowResults,
-  ]);
+// call the function when the value changes
+    fetchSynonyms();
+    // by adding props to the dependency array, React is re-running the effect whenever
+    // props or props.value changes
+  }, [props.value, props]);
 
-  //why is the return statement not rendering the synonyms?
-
+  //render div that contains a list of synonyms
   return (
     <div className="SearchContainer">
-      <div className="response">
-        <h4>
-          Synonyms for{" "}
-          <span className="keyword">
-            {searchHistory[searchHistory.length - 1]}
-          </span>
-          :
-        </h4>
-        {showResults && (
+      <div className="response">  
           <ul>
-            {synonyms.map((synonym) => (
-              <li key={synonym.word}>{synonym.word}</li>
-            ))}
+             {synonyms.map((synonym) => (
+                <li key={synonym}>{synonym}</li>
+              ))}
           </ul>
-        )}
       </div>
     </div>
   );
