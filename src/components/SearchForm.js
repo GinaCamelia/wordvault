@@ -15,7 +15,7 @@ export default function SearchForm() {
     event.preventDefault();
     setKeyword("");
     setShowResults(true);
-  }
+  };
   return (
     <div className="SearchContainer">
       <form onSubmit={search} className="SearchForm">
@@ -34,21 +34,21 @@ export default function SearchForm() {
       </form>
 
       <div className="response">
-        <>
-          <h4>Words that rhyme with </h4>
-          {showResults && (
+        <h4>Words that rhyme with <span className='keyword'>{keyword}:</span></h4>
+        {showResults && (
           <>
-            <RhymingWords value={keyword} setKeyword={setKeyword} key={'rhy'} />
+            <RhymingWords value={keyword} setKeyword={setKeyword} key={"rhy"} />
           </>
-          )}
+        )}
+      </div>
 
-          <h4>Synonyms for </h4>
-          {showResults && (
+      <div className="response">
+        <h4>Synonyms for <span className='keyword'>{keyword}:</span></h4>
+        {showResults && (
           <>
-            <Synonyms value={keyword} setKeyword={setKeyword} key={'syn'} />
+            <Synonyms value={keyword} setKeyword={setKeyword} key={"syn"} />
           </>
-          )}
-        </>
+        )}
       </div>
     </div>
   );
