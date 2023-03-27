@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { filteredWords } from "../utils/wordUtils";
 
 // added synonym feature to component using Datamuse API
 export default function Synonyms(props) {
@@ -19,20 +20,8 @@ export default function Synonyms(props) {
         const data = await response.json();
         console.log(data);
         //filter, sort and reduce the data to a list of up to 10 unique words
-        setSynonyms(
-          data
-            .filter((word) => word.word.length > 2)
-            .sort(() => Math.random() - 0.5)
-            .reduce((synonyms, word) => {
-              if (synonyms.length >= 10) {
-                return synonyms;
-              }
-              if (!synonyms.includes(word.word)) {
-                synonyms.push(word.word);
-              }
-              return synonyms;
-            }, [])
-        );
+        const synonyms = filteredWords(data);
+        setSynonyms(synonyms);
       } catch (error) {
         console.log(error);
       }

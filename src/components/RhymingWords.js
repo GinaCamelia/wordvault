@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { filteredWords } from "../utils/wordUtils";
 
 export default function RhymingWords(props) {
   const [rhymes, setRhymes] = useState([]);
@@ -11,27 +12,16 @@ export default function RhymingWords(props) {
     async function fetchRhymingWords() {
       try {
         const response = await fetch(
-          `https://api.datamuse.com/words?rel_syn=${props.value}`
+          `https://api.datamuse.com/words?rel_rhy=${props.value}`
         );
         console.log("Response: ", response);
         //converted the response body to JSON
         const data = await response.json();
         console.log(data);
-        //filter, sort and reduce the data to a list of up to 10 unique words
-        setRhymes(
-          data
-            .filter((word) => word.word.length > 2)
-            .sort(() => Math.random() - 0.5)
-            .reduce((rhymes, word) => {
-              if (rhymes.length >= 10) {
-                return rhymes;
-              }
-              if (!rhymes.includes(word.word)) {
-                rhymes.push(word.word);
-              }
-              return rhymes;
-            }, [])
-        );
+        // imported component from wordUtils.js filter, sort and reduce the 
+        // data to a list of up to 10 unique words
+        const rhymes = filteredWords(data);
+        setRhymes(rhymes);
       } catch (error) {
         console.log(error);
       }
