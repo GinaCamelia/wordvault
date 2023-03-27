@@ -5,10 +5,10 @@ import "./style.css";
 export default function Synonyms(props) {
   const [synonyms, setSynonyms] = useState([]);
 
-// declared an effect to be run when the props.value changes
+  // declared an effect to be run when the props.value changes
   useEffect(() => {
     console.log(props);
-// declared an asyncronous function to to fetch synonyms from api
+    // declared an asyncronous function to to fetch synonyms from api
     async function fetchSynonyms() {
       try {
         const response = await fetch(
@@ -21,23 +21,23 @@ export default function Synonyms(props) {
         //filter, sort and reduce the data to a list of up to 10 unique words
         setSynonyms(
           data
-          .filter((word) => word.word.length > 2)
-          .sort(() => Math.random() - 0.5)
-          .reduce((synonyms, word) => {
-            if (synonyms.length >= 10) {
+            .filter((word) => word.word.length > 2)
+            .sort(() => Math.random() - 0.5)
+            .reduce((synonyms, word) => {
+              if (synonyms.length >= 10) {
+                return synonyms;
+              }
+              if (!synonyms.includes(word.word)) {
+                synonyms.push(word.word);
+              }
               return synonyms;
-            }
-            if (!synonyms.includes(word.word)) {
-              synonyms.push(word.word);
-            }
-            return synonyms;
-          }, [])
+            }, [])
         );
       } catch (error) {
         console.log(error);
       }
     }
-// call the function when the value changes
+    // call the function when the value changes
     fetchSynonyms();
     // by adding props to the dependency array, React is re-running the effect whenever
     // props or props.value changes
@@ -46,12 +46,12 @@ export default function Synonyms(props) {
   //render div that contains a list of synonyms
   return (
     <div className="SearchContainer">
-      <div className="response">  
-          <ul>
-             {synonyms.map((synonym) => (
-                <li key={synonym}>{synonym}</li>
-              ))}
-          </ul>
+      <div className="response">
+        <ul>
+          {synonyms.map((synonym) => (
+            <li key={synonym}>{synonym}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
