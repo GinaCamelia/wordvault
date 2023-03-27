@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { filteredWords } from "../utils/wordUtils";
+import { filteredWords } from "../utils/WordUtils";
+import { fetchDataFromAPI } from "../utils/ApiUtils";
 
 export default function RhymingWords(props) {
   const [rhymes, setRhymes] = useState([]);
@@ -10,21 +11,14 @@ export default function RhymingWords(props) {
     console.log(props);
     // declared an asyncronous function to to fetch synonyms from api
     async function fetchRhymingWords() {
-      try {
-        const response = await fetch(
-          `https://api.datamuse.com/words?rel_rhy=${props.value}`
-        );
-        console.log("Response: ", response);
-        //converted the response body to JSON
-        const data = await response.json();
-        console.log(data);
-        // imported component from wordUtils.js filter, sort and reduce the 
-        // data to a list of up to 10 unique words
-        const rhymes = filteredWords(data);
-        setRhymes(rhymes);
-      } catch (error) {
-        console.log(error);
-      }
+      // imported function from apiUtils.js
+      const apiUrl = await fetchDataFromAPI('rel_rhy', props.value);
+      // console.log('The API url is ' + apiUrl);
+      const data = await apiUrl;
+      console.log(data);
+      // imported component from wordUtils.js
+      const rhymes = filteredWords(data);
+      setRhymes(rhymes);
     }
     // call the function when the value changes
     fetchRhymingWords();
