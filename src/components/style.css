@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Stick+No+Bills:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Stick+No+Bills:wght@800&family=Gruppo&display=swap");
 
 .Header {
   text-align: center;
@@ -51,25 +51,32 @@
 }
 
 .SearchContainer {
+  font-family: 'Gruppo';
+  font-size: 18px;
+  font-weight: bold;
   display: block;
   margin: 0 auto;
-  width: 80%;
+  width: 88%;
 }
 
 .SearchContainer .response {
-  margin: 10px;
   border-radius: 10px;
+  text-transform: capitalize;
 }
 
 .SearchContainer .response h4 {
-  margin-left: 55px;
-  padding: 5px 0;
+  font-size: 30px;
+  margin-left: 40px;
+  padding-top: 5px;
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .SearchContainer ul {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-left: -65px;
   list-style: none;
 }
 
@@ -85,28 +92,37 @@
 
 .SearchContainer .RhymingWords {
   background: #f0e2e8;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .SearchContainer .Synonyms {
   background: #c3bef0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .SearchContainer .MeansLike {
   background: #cca8e9;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.SearchContainer .Homophones {
+  background: #fdffcd;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .SearchContainer .hint {
-  font-size: 12px;
-  margin: 10px 0 30px 134px;
+  color: grey;
+  font-size: 13px;
+  /* display: flex; */
+  margin: 10px 0 30px 200px;
   opacity: 0.5;
 }
 .SearchContainer .hint span {
   font-weight: bold;
 }
 
-.SearchContainer .mockData {
-  margin-left: 18px;
+.SearchContainer .Photos img {
+  border-radius: 6px;
+  margin: 10px 15px;
 }
 
-.Photos img {
-  border-radius: 6px;
-  margin: 10px;
+.Photos .img-fluid {
+  max-width: 90%!important;
 }
