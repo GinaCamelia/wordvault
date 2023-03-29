@@ -7,7 +7,7 @@ function App() {
       <div className='Header'>
         <h1>WORDVAULT</h1>
       </div>
-      <SearchForm defaultKeyword='sunshine'/>
+      <SearchForm defaultKeyword='trunk'/>
     </div>
   );
 }
