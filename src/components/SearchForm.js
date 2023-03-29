@@ -52,7 +52,7 @@ export default function SearchForm(props) {
 
   const whenLoaded = () => {
     setLoaded(false);
-    search();
+    // search();
   };
 
   if (loaded) {
@@ -73,7 +73,7 @@ export default function SearchForm(props) {
           />
         </form>
         <p className="hint">
-          <span>Sugestions:</span> sunset, sunrise, forest, tennis...
+          <span> Sugestions: </span> sunset, sunrise, sunshine, sunflower...
         </p>
 
         <div className="RhymingWords response">
@@ -124,7 +124,7 @@ export default function SearchForm(props) {
           {/* )} */}
         </div>
 
-        <div className="Photos">
+        <div className="Photos response">
           <Photos photos={photos} />
         </div>
       </div>
