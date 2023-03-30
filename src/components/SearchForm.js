@@ -1,135 +1,115 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Synonyms from "./Synonyms";
 import RhymingWords from "./RhymingWords";
 import MeansLike from "./MeansLike";
 import Photos from "./Photos";
 import Meronyms from "./Meronyms";
-import axios from "axios";
+import Triggers from "./Triggers";
 
 export default function SearchForm(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
   const [loaded, setLoaded] = useState(true);
-  const [photos, setPhotos] = useState([]);
-  const [defaultData, setDefaultData] = useState({});
 
   const handleChange = (event) => {
     setKeyword(event.target.value);
   };
 
-  const handlePexelsResponse = (response) => {
-    setPhotos(response.data.photos);
-  };
-
-  useEffect(() => {
-    async function fetchDefaultData() {
-      const apiKey = "563492ad6f91700001000001bb77275a5ea44eceb6658854a019ff59";
-      const pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=9`;
-      let headers = { Authorization: apiKey };
-      axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
-      const endpoints = ["rel_rhy", "rel_syn", "ml", "rel_par"];
-      const params = [keyword, keyword, keyword, keyword];
-      const apiUrl = `https://api.datamuse.com/words?${endpoints
-        .map((e, i) => `${e}=${params[i]}`)
-        .join("&")}`;
-      const response = await axios.get(apiUrl);
-      const defaultData = {
-        rhymingWords: response.data.filter((item) =>item.hasOwnProperty("word")),
-        synonyms: response.data.filter((item) => item.hasOwnProperty("word")),
-        meansLike: response.data.filter((item) => item.hasOwnProperty("word")),
-        meronyms: response.data.filter((item) => item.hasOwnProperty("word")),
-      };
-      setDefaultData(defaultData);
-      // setLoaded(false);
-    }
-    fetchDefaultData();
-  }, [keyword]);
-
   const search = (event) => {
     event.preventDefault();
-    setLoaded(false);
+    setLoaded(true);
   };
 
-  const whenLoaded = () => {
-    setLoaded(false);
-    // search();
-  };
+  return (
+    <div className="SearchContainer">
+      <form onSubmit={search} className="SearchForm">
+        <input
+          type="search"
+          placeholder="Searching for ..."
+          className="form-control SearchInput"
+          onChange={handleChange}
+          value={keyword}
+        />
+        {/* <input
+          type="submit"
+          value="Search"
+          className="btn btn-primary SearchButton"
+        /> */}
+      </form>
+      <p className="hint">
+        <span> Sugestions: </span> sunset, sunrise, sunshine, sunflower...
+      </p>
 
-  if (loaded) {
-    return (
-      <div className="SearchContainer">
-        <form onSubmit={search} className="SearchForm">
-          <input
-            type="search"
-            placeholder="Searching for ..."
-            className="form-control SearchInput"
-            onChange={handleChange}
-            value={keyword}
-          />
-          <input
-            type="submit"
-            value="Search"
-            className="btn btn-primary SearchButton"
-          />
-        </form>
-        <p className="hint">
-          <span> Sugestions: </span> sunset, sunrise, sunshine, sunflower...
-        </p>
-
-        <div className="RhymingWords response">
-          <h4>Words that rhyme: </h4>
-          {/* {loaded && ( */}
-            <RhymingWords
-              value={keyword}
-              setKeyword={setKeyword}
-              key={"rhy"}
-              data={defaultData.rhymingWords}
-            />
-          {/* )} */}
-        </div>
-
-        <div className="Synonyms response">
-          <h4>Synonyms:</h4>
-          {/* {loaded && ( */}
-            <Synonyms
-              value={keyword}
-              setKeyword={setKeyword}
-              key={"syn"}
-              data={defaultData.synonyms}
-            />
-          {/* )} */}
-        </div>
-
-        <div className="MeansLike response">
-          <h4> Means Like:</h4>
-          {/* {loaded && ( */}
-            <MeansLike
-              value={keyword}
-              setKeyword={setKeyword}
-              key={"ml"}
-              data={defaultData.meansLike}
-            />
-          {/* )} */}
-        </div>
-
-        <div className="Homophones response">
-          <h4>Direct meronyms(part of):</h4>
-          {/* {loaded && ( */}
-            <Meronyms
-              value={keyword}
-              setKeyword={setKeyword}
-              key={"par"}
-              data={defaultData.meronyms}
-            />
-          {/* )} */}
-        </div>
-
-        <div className="Photos response">
-          <Photos photos={photos} />
-        </div>
+      <div className="RhymingWords response">
+        <h4>Words that rhyme: </h4>
+        <RhymingWords
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"rhy"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
       </div>
-    );
-  } else {
-    return whenLoaded();
-  }
+
+      <div className="Synonyms response">
+        <h4>Synonyms:</h4>
+        <Synonyms
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"syn"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
+      </div>
+
+      <div className="MeansLike response">
+        <h4> Means Like:</h4>
+        <MeansLike
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"ml"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
+      </div>
+
+      <div className="Homophones response">
+        <h4>Direct meronyms(part of):</h4>
+        <Meronyms
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"par"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
+      </div>
+
+      <div className="Triggers response">
+        <h4>Triggers(closely associated with a particular topic): </h4>
+        <Triggers
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"trg"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
+      </div>
+
+      <div className="Photos response">
+        <Photos
+          value={keyword}
+          setKeyword={setKeyword}
+          key={"pho"}
+          search={loaded}
+          setLoaded={setLoaded}
+          loaded={loaded}
+        />
+      </div>
+    </div>
+  );
 }

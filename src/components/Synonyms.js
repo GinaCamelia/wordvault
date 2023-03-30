@@ -5,36 +5,36 @@ import { fetchDataFromAPI } from "../utils/ApiUtils";
 
 export default function Synonyms(props) {
   const [synonyms, setSynonyms] = useState([]);
-  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
+    if (!props.loaded) {
+      return;
+    }
     async function fetchSynonyms() {
-      const endpoints = ['rel_syn'];
+      const endpoints = ["rel_syn"];
       const params = [props.value];
       const apiUrl = await fetchDataFromAPI(endpoints, params);
       const data = await apiUrl;
+      console.log(data);
       const synonyms = filteredWords(data);
       setSynonyms(synonyms);
-      setShowResults(true);
     }
     if (props.value) {
       fetchSynonyms();
+      props.setLoaded(false);
     } else {
       setSynonyms([]);
-      setShowResults(false);
     }
   }, [props.value, props]);
 
   return (
     <div className="SearchContainer">
       <div className="response">
-        {showResults && (
-          <ul>
-            {synonyms.map((synonym) => (
-              <li key={synonym}>{synonym}</li>
-            ))}
-          </ul>
-        )}
+        <ul>
+          {synonyms.map((synonym) => (
+            <li key={synonym}>{synonym}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

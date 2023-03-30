@@ -5,38 +5,44 @@ import { fetchDataFromAPI } from "../utils/ApiUtils";
 
 export default function Meronyms(props) {
   const [partOf, setPartOf] = useState([]);
-  const [showResults, setShowResults] = useState(true);
 
   useEffect(() => {
+    if (!props.value) {
+      return;
+    }
+    if (!props.loaded) {
+      return;
+    }
     async function fetchMeronyms() {
-      const endpoints = ['rel_par'];
+      const endpoints = ["rel_par"];
       const params = [props.value];
       const apiUrl = await fetchDataFromAPI(endpoints, params);
       const data = await apiUrl;
       console.log(data);
       const partOfWord = filteredWords(data);
       setPartOf(partOfWord);
-    //   setShowResults(false);
     }
     if (props.value) {
       fetchMeronyms();
+      props.setLoaded(false);
     } else {
       setPartOf();
-      setShowResults(false);
     }
   }, [props.value, props]);
 
-  return (
-    <div className="SearchContainer">
-      <div className="response">
-        {showResults && (
+  if (partOf.length === 0) {
+    return null;
+  } else {
+    return (
+      <div className="SearchContainer">
+        <div className="response">
           <ul>
             {partOf.map((word) => (
               <li key={word}>{word}</li>
             ))}
           </ul>
-        )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
