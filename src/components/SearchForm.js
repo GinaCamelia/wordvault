@@ -22,17 +22,25 @@ export default function SearchForm(props) {
 
   return (
     <div className="container SearchContainer">
-      <form onSubmit={search} className="SearchForm">
+      <div className="d-flex justify-content-lg-center ">
+        <form onSubmit={search} className="SearchForm">
+          <input
+            type="search"
+            placeholder="Searching for ..."
+            className="form-control form-control-md SearchInput"
+            onChange={handleChange}
+            value={keyword}
+          />
+        </form>
         <input
-          type="search"
-          placeholder="Searching for ..."
-          className="form-control SearchInput"
-          onChange={handleChange}
-          value={keyword}
+          type="submit"
+          value="Search"
+          className="btn btn-primary SearchButton"
         />
-      </form>
-      <p className="hint text-center mt-1 mb-5 col-md-12 col-lg-12">
-        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower...
+      </div>
+
+      <p className="hint mt-1 mb-5 d-flex justify-content-center">
+        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower, trunk, tree, paint, sun...
       </p>
 
       <div className="row">
@@ -55,7 +63,9 @@ export default function SearchForm(props) {
         <div className="col-md-12 col-lg-12 mb-4">
           <div className="card">
             <div className="card-body Synonyms response">
-              <h4 className="card-title d-flex align-items-start">Synonyms: </h4>
+              <h4 className="card-title d-flex align-items-start">
+                Synonyms:{" "}
+              </h4>
               <Synonyms
                 value={keyword}
                 setKeyword={setKeyword}
@@ -103,7 +113,9 @@ export default function SearchForm(props) {
         <div className="col-md-12 col-lg-12 mb-4">
           <div className="card">
             <div className="card-body Triggers response">
-              <h4 className="card-title">Triggers (closely associated with a particular topic): </h4>
+              <h4 className="card-title">
+                Triggers (closely associated with a particular topic):{" "}
+              </h4>
               <Triggers
                 value={keyword}
                 setKeyword={setKeyword}
@@ -116,7 +128,7 @@ export default function SearchForm(props) {
           </div>
         </div>
       </div>
-    
+
       <div className="Photos">
         <Photos
           value={keyword}

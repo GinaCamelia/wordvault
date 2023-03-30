@@ -15,15 +15,24 @@
 }
 
 .SearchInput {
+  width: 400px;
   padding: 10px;
   border-radius: 5px;
   border: none;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.SearchForm {
-  display: flex;
-  justify-content: center;
+.SearchButton {
+  margin-left: 5px;
+  background-color: #defcf9 !important;
+  border-color: lightgrey !important;
+  color: black !important;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.SearchButton:hover {
+  background-color: #cadefc !important;
+  transition: all 200ms ease-in-out;
 }
 
 .SearchContainer {
@@ -44,10 +53,6 @@
 
 .SearchContainer ul {
   list-style:none;
-}
-
-.form-control {
-  width: 50% !important;
 }
 
 .SearchContainer .RhymingWords {
