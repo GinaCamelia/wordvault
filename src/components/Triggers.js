@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { filteredWords } from "../utils/WordUtils";
-import { fetchDataFromAPI } from "../utils/ApiUtils";
+import { filteredWords } from "../utils/wordUtils";
+import { fetchDataFromAPI } from "../utils/apiUtils";
 
 export default function Triggers(props) {
   const [triggers, setTriggers] = useState([]);
