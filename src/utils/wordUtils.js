@@ -1,4 +1,5 @@
 export const filteredWords = (data, filteredData) => {
+  filteredData = filteredData || [];
   return data
     .filter((word) => word.word.length > 2)
     .sort(() => Math.random() - 0.5)
