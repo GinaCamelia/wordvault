@@ -74,13 +74,10 @@
 .SearchContainer .hint {
   color: grey;
   opacity: 0.5;
+  font-size: 13px;
 }
 
 .SearchContainer .Photos img {
   border-radius: 6px;
   margin-bottom: 10px;
-}
-
-h4.card-title {
-  padding-left: 34px!important;
 }
