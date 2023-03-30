@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { filteredWords } from "../utils/WordUtils.js";
+import { filteredWords } from "../utils/WordUtils";
 import { fetchDataFromAPI } from "../utils/ApiUtils";
 
 export default function RhymingWords(props) {
