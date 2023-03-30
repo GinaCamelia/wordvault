@@ -21,7 +21,7 @@ export default function SearchForm(props) {
   };
 
   return (
-    <div className="SearchContainer">
+    <div className="container SearchContainer">
       <form onSubmit={search} className="SearchForm">
         <input
           type="search"
@@ -30,77 +30,94 @@ export default function SearchForm(props) {
           onChange={handleChange}
           value={keyword}
         />
-        {/* <input
-          type="submit"
-          value="Search"
-          className="btn btn-primary SearchButton"
-        /> */}
       </form>
-      <p className="hint">
-        <span> Sugestions: </span> sunset, sunrise, sunshine, sunflower...
+      <p className="hint text-center mt-1 mb-5 col-md-12 col-lg-12">
+        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower...
       </p>
 
-      <div className="RhymingWords response">
-        <h4>Words that rhyme: </h4>
-        <RhymingWords
-          value={keyword}
-          setKeyword={setKeyword}
-          key={"rhy"}
-          search={loaded}
-          setLoaded={setLoaded}
-          loaded={loaded}
-        />
-      </div>
+      <div className="row">
+        <div className="col-md-12 col-lg-12 mb-4">
+          <div className="card">
+            <div className="card-body RhymingWords response">
+              <h4 className="card-title">Words that rhyme: </h4>
+              <RhymingWords
+                value={keyword}
+                setKeyword={setKeyword}
+                key={"rhy"}
+                search={loaded}
+                setLoaded={setLoaded}
+                loaded={loaded}
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="Synonyms response">
-        <h4>Synonyms:</h4>
-        <Synonyms
-          value={keyword}
-          setKeyword={setKeyword}
-          key={"syn"}
-          search={loaded}
-          setLoaded={setLoaded}
-          loaded={loaded}
-        />
-      </div>
+        <div className="col-md-12 col-lg-12 mb-4">
+          <div className="card">
+            <div className="card-body Synonyms response">
+              <h4 className="card-title d-flex align-items-start">Synonyms: </h4>
+              <Synonyms
+                value={keyword}
+                setKeyword={setKeyword}
+                key={"syn"}
+                search={loaded}
+                setLoaded={setLoaded}
+                loaded={loaded}
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="MeansLike response">
-        <h4> Means Like:</h4>
-        <MeansLike
-          value={keyword}
-          setKeyword={setKeyword}
-          key={"ml"}
-          search={loaded}
-          setLoaded={setLoaded}
-          loaded={loaded}
-        />
-      </div>
+        <div className="col-md-12 col-lg-12 mb-4">
+          <div className="card">
+            <div className="card-body MeansLike response">
+              <h4 className="card-title">Means like: </h4>
+              <MeansLike
+                value={keyword}
+                setKeyword={setKeyword}
+                key={"ml"}
+                search={loaded}
+                setLoaded={setLoaded}
+                loaded={loaded}
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="Homophones response">
-        <h4>Direct meronyms(part of):</h4>
-        <Meronyms
-          value={keyword}
-          setKeyword={setKeyword}
-          key={"par"}
-          search={loaded}
-          setLoaded={setLoaded}
-          loaded={loaded}
-        />
-      </div>
+        <div className="col-md-12 col-lg-12 mb-4">
+          <div className="card">
+            <div className="card-body Meronyms response">
+              <h4 className="card-title">Direct meronyms (part of): </h4>
+              <Meronyms
+                value={keyword}
+                setKeyword={setKeyword}
+                key={"par"}
+                search={loaded}
+                setLoaded={setLoaded}
+                loaded={loaded}
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="Triggers response">
-        <h4>Triggers(closely associated with a particular topic): </h4>
-        <Triggers
-          value={keyword}
-          setKeyword={setKeyword}
-          key={"trg"}
-          search={loaded}
-          setLoaded={setLoaded}
-          loaded={loaded}
-        />
+        <div className="col-md-12 col-lg-12 mb-4">
+          <div className="card">
+            <div className="card-body Triggers response">
+              <h4 className="card-title">Triggers (closely associated with a particular topic): </h4>
+              <Triggers
+                value={keyword}
+                setKeyword={setKeyword}
+                key={"par"}
+                search={loaded}
+                setLoaded={setLoaded}
+                loaded={loaded}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="Photos response">
+    
+      <div className="Photos">
         <Photos
           value={keyword}
           setKeyword={setKeyword}

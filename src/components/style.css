@@ -14,17 +14,6 @@
   text-shadow: 3px 2px 10px rgba(0, 0, 0, 1);
 }
 
-/* .second-color { 
-	background: #cadefc; 
-}
-
-.third-color { 
-	background: #c3bef0; 
-}
-
-.fourth-color { 
-	background: #cca8e9;  */
-
 .SearchInput {
   padding: 10px;
   border-radius: 5px;
@@ -37,53 +26,24 @@
   justify-content: center;
 }
 
-.SearchButton {
-  margin-left: 5px;
-  background-color: #defcf9 !important;
-  border-color: lightgrey !important;
-  color: black !important;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.SearchButton:hover {
-  background-color: #cadefc !important;
-  transition: all 200ms ease-in-out;
-}
-
 .SearchContainer {
   font-family: 'Gruppo';
   font-size: 18px;
   font-weight: bold;
-  display: block;
-  margin: 0 auto;
-  width: 88%;
 }
 
 .SearchContainer .response {
-  border-radius: 10px;
-  text-transform: capitalize;
+  border-radius: 8px;
 }
 
 .SearchContainer .response h4 {
-  font-size: 30px;
-  margin-left: 40px;
-  padding-top: 5px;
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  text-transform: capitalize;
 }
 
 .SearchContainer ul {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  margin-left: -65px;
-  list-style: none;
-}
-
-.response .keyword {
-  font-weight: bold;
-  font-style: italic;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  list-style:none;
 }
 
 .form-control {
@@ -92,18 +52,18 @@
 
 .SearchContainer .RhymingWords {
   background: #f0e2e8;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 2px rgba(0, 0.3, 0.3, 0.3);
 }
 .SearchContainer .Synonyms {
   background: #c3bef0;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .SearchContainer .MeansLike {
-  background: #cca8e9;
+  background: #fdffcd;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-.SearchContainer .Homophones {
-  background: #fdffcd;
+.SearchContainer .Meronyms {
+  background: #cca8e9;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .SearchContainer .Triggers {
@@ -113,20 +73,15 @@
 
 .SearchContainer .hint {
   color: grey;
-  font-size: 13px;
-  /* display: flex; */
-  margin: 10px 0 30px 200px;
   opacity: 0.5;
-}
-.SearchContainer .hint span {
-  font-weight: bold;
+  margin-left: -118px;
 }
 
 .SearchContainer .Photos img {
   border-radius: 6px;
-  margin: 10px 15px;
+  margin-bottom: 10px;
 }
 
-.Photos .img-fluid {
-  max-width: 90%!important;
+h4.card-title {
+  padding-left: 39px!important;
 }
