@@ -27,7 +27,7 @@ export default function SearchForm(props) {
           <input
             type="search"
             placeholder="Searching for ..."
-            className="form-control form-control-md SearchInput"
+            className="form-control SearchInput"
             onChange={handleChange}
             value={keyword}
           />
@@ -40,7 +40,7 @@ export default function SearchForm(props) {
       </div>
 
       <p className="hint mt-1 mb-5 d-flex justify-content-center">
-        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower, trunk, tree, paint, sun...
+        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower, trunk, tree ...
       </p>
 
       <div className="row">
