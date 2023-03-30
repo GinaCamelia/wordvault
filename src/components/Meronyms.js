@@ -1,27 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-// import { filteredWords } from "../utils/WordUtils";
+import { filteredWords } from "../utils/WordUtils";
 import { fetchDataFromAPI } from "../utils/ApiUtils";
 
 export default function Meronyms(props) {
   const [partOf, setPartOf] = useState([]);
-
-  const filteredWords = (data, filteredData) => {
-    filteredData = filteredData || [];
-    return data
-      .filter((word) => word.word.length > 2)
-      .sort(() => Math.random() - 0.5)
-      .reduce((filteredData, word) => {
-        if (filteredData.length >= 10) {
-          return filteredData;
-        }
-        if (!filteredData.includes(word.word)) {
-          filteredData.push(word.word);
-        }
-        return filteredData;
-      }, []);
-  };
-  
 
   useEffect(() => {
     if (!props.value) {
