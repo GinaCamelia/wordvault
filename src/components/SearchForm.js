@@ -37,6 +37,7 @@ export default function SearchForm(props) {
             type="submit"
             value="Search"
             className="btn btn-primary SearchButton"
+            onClick={search}
           />
         </div>
         <div className="d-flex flex-wrap justify-content-center">
