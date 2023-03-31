@@ -22,7 +22,7 @@ export default function SearchForm(props) {
 
   return (
     <div className="container SearchContainer">
-      <div className="d-flex justify-content-lg-center ">
+      <div className=" col-lg-12 d-flex justify-content-center ">
         <form onSubmit={search} className="SearchForm">
           <input
             type="search"
@@ -38,14 +38,16 @@ export default function SearchForm(props) {
           className="btn btn-primary SearchButton"
         />
       </div>
-
-      <p className="hint mt-1 mb-5 d-flex justify-content-center">
-        <span>Sugestions:</span> sunset, sunrise, sunshine, sunflower, trunk, tree ...
-      </p>
+      <div>
+        <p className="hint mt-1 mb-5 d-flex flex-row justify-content-center">
+          <span>Suggestions:&nbsp;</span> sunset, sunrise, sunshine, sunflower, trunk, tree
+          ...
+        </p>
+      </div>
 
       <div className="row">
         <div className="col-md-12 col-lg-12 mb-4">
-          <div className="card">
+          <div className="card border-0">
             <div className="card-body RhymingWords response">
               <h4 className="card-title">Words that rhyme: </h4>
               <RhymingWords
@@ -61,7 +63,7 @@ export default function SearchForm(props) {
         </div>
 
         <div className="col-md-12 col-lg-12 mb-4">
-          <div className="card">
+          <div className="card border-0">
             <div className="card-body Synonyms response">
               <h4 className="card-title d-flex align-items-start">
                 Synonyms:{" "}
@@ -79,7 +81,7 @@ export default function SearchForm(props) {
         </div>
 
         <div className="col-md-12 col-lg-12 mb-4">
-          <div className="card">
+          <div className="card border-0">
             <div className="card-body MeansLike response">
               <h4 className="card-title">Means like: </h4>
               <MeansLike
@@ -95,7 +97,7 @@ export default function SearchForm(props) {
         </div>
 
         <div className="col-md-12 col-lg-12 mb-4">
-          <div className="card">
+          <div className="card border-0">
             <div className="card-body Meronyms response">
               <h4 className="card-title">Direct meronyms (part of): </h4>
               <Meronyms
@@ -111,7 +113,7 @@ export default function SearchForm(props) {
         </div>
 
         <div className="col-md-12 col-lg-12 mb-4">
-          <div className="card">
+          <div className="card border-0">
             <div className="card-body Triggers response">
               <h4 className="card-title">
                 Triggers (closely associated with a particular topic):{" "}
