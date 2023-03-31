@@ -38,7 +38,7 @@ export default function SearchForm(props) {
           className="btn btn-primary SearchButton"
         />
       </div>
-      <div>
+      <div className="d-flex, flex-wrap justify-content-center">
         <p className="hint mt-1 mb-5 d-flex flex-row justify-content-center">
           <span>Suggestions:&nbsp;</span> sunset, sunrise, sunshine, sunflower, trunk, tree
           ...
