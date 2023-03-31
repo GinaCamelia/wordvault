@@ -23,28 +23,28 @@ export default function SearchForm(props) {
   return (
     <div className="container SearchContainer">
       <div className="d-flex flex-column align-items-center">
-      <div className="col-lg-12 d-flex justify-content-center ">
-        <form onSubmit={search} className="SearchForm">
+        <div className="col-lg-12 d-flex justify-content-center ">
+          <form onSubmit={search} className="SearchForm">
+            <input
+              type="search"
+              placeholder="Searching for ..."
+              className="form-control SearchInput"
+              onChange={handleChange}
+              value={keyword}
+            />
+          </form>
           <input
-            type="search"
-            placeholder="Searching for ..."
-            className="form-control SearchInput"
-            onChange={handleChange}
-            value={keyword}
+            type="submit"
+            value="Search"
+            className="btn btn-primary SearchButton"
           />
-        </form>
-        <input
-          type="submit"
-          value="Search"
-          className="btn btn-primary SearchButton"
-        />
-      </div>
-      <div className="d-flex flex-wrap justify-content-center">
-        <p className="hint mt-1 mb-5 d-flex flex-row justify-content-center">
-          <span>Suggestions:&nbsp;</span> sunset, sunrise, sunshine, sunflower, trunk, tree
-          ...
-        </p>
-      </div>
+        </div>
+        <div className="d-flex flex-wrap justify-content-center">
+          <p className="hint mt-1 ustify-content-center">
+            <span>Suggestions:&nbsp;</span> sunset, sunrise, sunshine,
+            sunflower, trunk, tree ...
+          </p>
+        </div>
       </div>
 
       <div className="row">
